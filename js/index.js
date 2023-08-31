@@ -34,8 +34,8 @@ const handleCatagory = (names) => {
 
 const loadVideo = async (ID) => {
 
-    
-  
+
+
 
 
     const cardId = await fetch(` https://openapi.programming-hero.com/api/videos/category/${ID}`);
@@ -50,9 +50,9 @@ const loadVideo = async (ID) => {
 
     //nodata found for legnth 0 
 
-    if(cardDetails.length == 0){
+    if (cardDetails.length == 0) {
 
-        cardField.innerHTML=`
+        cardField.innerHTML = `
 
       
         <div class="mx-auto col-span-4 text-center mt-6 md:mt-20 ">
@@ -70,9 +70,9 @@ const loadVideo = async (ID) => {
 
 
     }
-    
 
-   
+
+
     cardDetails.forEach(cardData => {
 
         const cardInfo = document.createElement('div');
@@ -112,16 +112,22 @@ const loadVideo = async (ID) => {
 
 
         const vidId = document.getElementById(`${cardData.thumbnail}`);
-       
-        const postDate = cardData.others.posted_date;
-        const hours = Math.floor(postDate / 3600);
-       const minutes = Math.floor((postDate % 3600) / 60);
 
-  const time=  `${hours}hrs ${minutes}min`
+        const postDate = cardData.others.posted_date;
+
+        // convert to hours and minutes 
+
+        const hours = Math.floor(postDate / 3600);
+        const minutes = Math.floor((postDate % 3600) / 60);
+
+        const time = `${hours}hrs ${minutes} min`;
+
+        // if post date available
+
         if (postDate !== '') {
             const postDate = cardData.others.posted_date;
             if (postDate !== '') {
-               
+
                 const pera = document.createElement('p');
                 pera.classList.add('bg-black', 'text-white', 'text-xs', 'py-1', 'px-2', 'rounded');
 
@@ -137,13 +143,13 @@ const loadVideo = async (ID) => {
 
 
         const verifyId = document.getElementById(`${cardData.thumbnail}-img`);
-       
+
         const verifyStatus = cardData.authors[0].verified;
 
-        
+
 
         if (verifyStatus === true) {
-            
+
             const newDiv = document.createElement('div');
             newDiv.innerHTML = `
              <img src="./images/fi_10629607.png" alt="">
