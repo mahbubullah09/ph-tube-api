@@ -61,7 +61,7 @@ const loadVideo = async(ID) =>{
             <h4 class="text-base font-bold ">${cardData.title}</h4>
             
             <div id="${cardData.thumbnail}-img" class="flex items-center gap-2">
-            <p class="text-[#171717] text-opacity-70 ">Awlad Hossain </p>
+            <p class="text-[#171717] text-opacity-70 "> ${cardData.authors.profile_name}</p>
            
         </div>
             <p class="text-[#171717] text-opacity-70 ">91K views</p>
