@@ -48,32 +48,66 @@ const loadVideo = async(ID) =>{
         cardInfo.innerHTML= `
         <figure class=" relative ">
         <img class="md:h-60  lg:h-44 w-full rounded" src="${cardData.thumbnail} alt="">
-        <div id="ad" class="absolute bottom-2 right-2">
-            <p class="bg-black py-1 px-2 rounded text-white text-xs ">1000</p>
+        <div id="${cardData.thumbnail}" class="absolute bottom-2 right-2">
+         
         </div>
-    </figure>
+     </figure>
 
-    <div class=" mt-4 flex  justify-start items-start gap-2 ml-1">
-                     
+     <div class=" mt-4 flex  justify-start items-start gap-2 ml-1">
+                   
         <img  src="./Ellipse 1.jpg" alt="">
-    </figure>  
+     </figure>  
         <div class="right flex-initial">
             <h4 class="text-base font-bold ">Building a Winning UX Strategy Using the Kano Model</h4>
             
-            <div class="flex items-center gap-2">
+            <div id="${cardData.thumbnail}-img" class="flex items-center gap-2">
             <p class="text-[#171717] text-opacity-70 ">Awlad Hossain </p>
-            <img src="./fi_10629607.png" alt="">
+           
         </div>
             <p class="text-[#171717] text-opacity-70 ">91K views</p>
         </div>
-    </div>
+     </div>
         
         
         `
         cardField.appendChild(cardInfo);
 
-        
+
+        const vidId= document.getElementById(`${cardData.thumbnail}`);
+        console.log(vidId);
+        const postDate= cardData.others.posted_date;
+        if(postDate !== ''){
+            const postDate= cardData.others.posted_date;
+            if(postDate !== ''){
+                console.log(postDate);
+                const pera = document.createElement('p');
+                pera.classList.add('bg-black', 'text-white', 'text-xs' , 'py-1', 'px-2', 'rounded');
+                
+               
+                pera.innerHTML=`${postDate} seconds ago`;
+    
+                vidId.appendChild(pera);
+            }
+        }
+
+        const verifyId= document.getElementById(`${cardData.thumbnail}-img`);
+        console.log(verifyId);
+        const verifyStatus= cardData.authors[0].verified;
+      
+        console.log(verifyStatus);     
+
+        if(verifyStatus === true){
+            
+             const newDiv =document.createElement('div');
+             newDiv.innerHTML=`
+             <img src="./images/fi_10629607.png" alt="">
+             `
+
+             verifyId.appendChild(newDiv);
+        }
     });
+
+    
 
 
 
