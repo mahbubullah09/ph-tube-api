@@ -82,6 +82,7 @@ const loadVideo = async (ID) => {
         <figure class=" relative ">
         <img class="md:h-60  lg:h-44 w-full rounded" src="${cardData.thumbnail} alt="">
         <div id="${cardData.thumbnail}" class="absolute bottom-2 right-2">
+       
          
         </div>
      </figure>
@@ -95,6 +96,7 @@ const loadVideo = async (ID) => {
             
             <div id="${cardData.thumbnail}-img" class="flex items-center gap-2">
             <p class="text-[#171717] text-opacity-70 "> ${cardData.authors[0].profile_name}</p>
+            
            
         </div>
             <p class="text-[#171717] text-opacity-70 ">${cardData.others.views} views</p>
@@ -112,6 +114,10 @@ const loadVideo = async (ID) => {
         const vidId = document.getElementById(`${cardData.thumbnail}`);
        
         const postDate = cardData.others.posted_date;
+        const hours = Math.floor(postDate / 3600);
+       const minutes = Math.floor((postDate % 3600) / 60);
+
+  const time=  `${hours}hrs ${minutes}min`
         if (postDate !== '') {
             const postDate = cardData.others.posted_date;
             if (postDate !== '') {
@@ -120,7 +126,7 @@ const loadVideo = async (ID) => {
                 pera.classList.add('bg-black', 'text-white', 'text-xs', 'py-1', 'px-2', 'rounded');
 
 
-                pera.innerHTML = `${postDate} seconds ago`;
+                pera.innerHTML = `${time} ago`;
 
                 vidId.appendChild(pera);
             }
