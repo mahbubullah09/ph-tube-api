@@ -64,7 +64,7 @@ const loadVideo = async(ID) =>{
             <p class="text-[#171717] text-opacity-70 "> ${cardData.authors[0].profile_name}</p>
            
         </div>
-            <p class="text-[#171717] text-opacity-70 ">91K views</p>
+            <p class="text-[#171717] text-opacity-70 ">${cardData.others.views} views</p>
         </div>
      </div>
         
