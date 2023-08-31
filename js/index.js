@@ -55,7 +55,7 @@ const loadVideo = async(ID) =>{
 
      <div class=" mt-4 flex  justify-start items-start gap-2 ml-1">
           <figure>         
-        <img class="rounded-full min-[320px]:w-16 min-[320px]:h-9 min-[360px]:h-10 min-[360px]:w-14 min-[410px]:w-14 min-[410px]:h-12  md:w-16 md:h-12 lg:w-28 lg:h-12"  src=${cardData.authors[0].profile_picture} alt="">
+        <img class="rounded-full min-[320px]:w-16 min-[320px]:h-9 min-[360px]:h-10 min-[360px]:w-14 min-[410px]:w-14 min-[410px]:h-12 min-[600px]:w-14 min-[600px]:h-14 md:w-16 md:h-12 lg:w-28 lg:h-12"  src=${cardData.authors[0].profile_picture} alt="">
      </figure>  
         <div class="right flex-initial">
             <h4 class="text-base font-bold ">Building a Winning UX Strategy Using the Kano Model</h4>
