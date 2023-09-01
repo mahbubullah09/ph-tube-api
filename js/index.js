@@ -1,9 +1,9 @@
-const loadCatagory = async (isSort) => {
+const loadCatagory = async () => {
 
     const catagory = await fetch(`https://openapi.programming-hero.com/api/videos/categories`);
     const data = await catagory.json();
     const catagoryNames = data.data;
-    handleCatagory(catagoryNames, isSort)
+    handleCatagory(catagoryNames)
 
 
 
@@ -11,8 +11,8 @@ const loadCatagory = async (isSort) => {
 
 //handleCatagory
 
-const handleCatagory = (names, isSort) => {
-    console.log(isSort);
+const handleCatagory = (names) => {
+ 
 
     const catagoryId = document.getElementById('catagory-field');
     catagoryId.innerHTML = ''
@@ -26,7 +26,7 @@ const handleCatagory = (names, isSort) => {
 
         catagoryName.innerHTML = `
     
-     <button onclick="loadVideo('${name.category_id}' , '${isSort}')" class="bg-[#252525] bg-opacity-20 text-[ #252525] text-base py-1 px-3 rounded mt-2 ">${name.category}</button>`
+     <button onclick="loadVideo('${name.category_id}')" class="bg-[#252525] bg-opacity-20 text-[ #252525] text-base py-1 px-3 rounded mt-2 ">${name.category}</button>`
 
         catagoryId.appendChild(catagoryName);
     });
@@ -37,9 +37,8 @@ const handleCatagory = (names, isSort) => {
 // load video 
 
 
-const loadVideo = async (ID, isSort) => {
-    console.log(isSort);
-    console.log(ID);
+const loadVideo = async (ID) => {
+  
     const catagoryName = document.createElement('div');
     catagoryName.innerHTML = '';
 
@@ -59,50 +58,12 @@ const loadVideo = async (ID, isSort) => {
 
     let cardDetails = data;
 
-    const isOk = document.getElementById('click');
-    console.log(isOk);
-
-
-
-
-
-    // console.log(cardDetails);
-
-    // console.log(cardDetails[0].others.views);
-
-    // cardDetails.sort((a, b) => b.others.posted_date - a.others.posted_date);
-
-    // if(c===1){
-
-    //     cardDetails.sort((a, b) => {
-    //         let x = parseInt(a.others.views)
-    //         let y = parseInt(b.others.views)
-
-
-    //     return y-x;
-    //     });
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // console.log(cardDetails.length);
-
+  
 
     const cardField = document.getElementById('card-field');
     cardField.innerHTML = '';
 
-    //nodata found for legnth 0 
+    
 
     if (cardDetails.length == 0) {
 
@@ -125,22 +86,7 @@ const loadVideo = async (ID, isSort) => {
 
     }
 
-    // if(isClicked === 'true'){
-
-
-    //     cardDetails.sort((a, b) => {
-    //         let x = parseInt(a.others.views)
-    //         let y = parseInt(b.others.views)
-
-
-
-    //     return y-x;
-    //     });
-
-
-
-
-    // }
+   
 
 
 
@@ -235,6 +181,7 @@ const loadVideo = async (ID, isSort) => {
     });
 
 
+    //sorting button
 
     document.getElementById('click').onclick = function () {
         const cardField = document.getElementById('card-field');
@@ -379,13 +326,6 @@ const loadVideo = async (ID, isSort) => {
 
 }
 
-const handleSortViwes = (a) => {
-
-    return a;
-
-
-
-}
 
 
 
