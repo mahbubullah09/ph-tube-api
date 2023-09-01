@@ -6,20 +6,16 @@ const loadCatagory = async () => {
     handleCatagory(catagoryNames)
 
 
-
 }
 
 //handleCatagory
 
 const handleCatagory = (names) => {
  
-
     const catagoryId = document.getElementById('catagory-field');
     catagoryId.innerHTML = ''
 
-
     names.forEach(name => {
-
 
         const catagoryName = document.createElement('div');
 
@@ -30,7 +26,6 @@ const handleCatagory = (names) => {
 
         catagoryId.appendChild(catagoryName);
     });
-
 }
 
 
