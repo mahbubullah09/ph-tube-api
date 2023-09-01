@@ -1,9 +1,9 @@
-const loadCatagory = async () => {
+const loadCatagory = async (isClicked) => {
 
     const catagory = await fetch(`https://openapi.programming-hero.com/api/videos/categories`);
     const data = await catagory.json();
     const catagoryNames = data.data;
-    handleCatagory(catagoryNames)
+    handleCatagory(catagoryNames, isClicked)
 
 
 
@@ -11,17 +11,21 @@ const loadCatagory = async () => {
 
 //handleCatagory
 
-const handleCatagory = (names) => {
+const handleCatagory = (names, isClicked) => {
+    console.log(isClicked);
     const catagoryId = document.getElementById('catagory-field');
+    catagoryId.innerHTML=''
+   
 
     names.forEach(name => {
 
 
-        const catagoryName = document.createElement('div')
-
+        const catagoryName = document.createElement('div');
+       
+        
         catagoryName.innerHTML = `
     
-    <button onclick="loadVideo('${name.category_id}')" class="bg-[#252525] bg-opacity-20 text-[ #252525] text-base py-1 px-3 rounded mt-2 ">${name.category}</button>`
+    <button onclick="loadVideo('${name.category_id}','${isClicked}')" class="bg-[#252525] bg-opacity-20 text-[ #252525] text-base py-1 px-3 rounded mt-2 ">${name.category}</button>`
 
         catagoryId.appendChild(catagoryName);
     });
@@ -32,17 +36,67 @@ const handleCatagory = (names) => {
 // load video 
 
 
-const loadVideo = async (ID) => {
+const loadVideo = async (ID, isClicked) => {
+    const catagoryName = document.createElement('div');
+    catagoryName.innerHTML='';
 
+ const clicked = isClicked;
+ console.log(clicked);
+  
 
 
 
 
     const cardId = await fetch(` https://openapi.programming-hero.com/api/videos/category/${ID}`);
     const card = await cardId.json();
+    const data= card.data;
+    
 
-    const cardDetails = card.data;
-    console.log(cardDetails.length);
+    let cardDetails=data;
+
+
+    console.log(cardDetails);
+    
+    // cardDetails.sort((a, b) => b.others.posted_date - a.others.posted_date);
+
+    // cardDetails.sort((a, b) => {
+    //     let fa = a.others.views.toLowerCase(),
+    //         fb = b.others.views.toLowerCase();
+    
+    //     if (fa > fb) {
+    //         return -1;
+    //     }
+    //     if (fa < fb) {
+    //         return 1;
+    //     }
+    //     return 0;
+    // });
+    
+
+
+    cardDetails.forEach((e)=>{
+
+        console.log(`${e.others.views} ${e.others.posted_date}`);
+    })
+
+
+
+    if(isClicked === 'true'){
+        
+        
+        console.log("object");
+
+        
+    
+    
+    }
+
+ 
+
+   
+   
+
+    // console.log(cardDetails.length);
 
 
     const cardField = document.getElementById('card-field');
@@ -74,6 +128,8 @@ const loadVideo = async (ID) => {
 
 
     cardDetails.forEach(cardData => {
+
+        console.log(isClicked);
 
         const cardInfo = document.createElement('div');
         cardInfo.classList.add('my-2', 'cursor-pointer');
@@ -146,7 +202,7 @@ const loadVideo = async (ID) => {
 
         const verifyStatus = cardData.authors[0].verified;
 
-
+        //check verifyed or not? 
 
         if (verifyStatus === true) {
 
@@ -166,6 +222,12 @@ const loadVideo = async (ID) => {
 
 
 
+
+
+}
+
+const handleSortViwes = () =>{
+    loadCatagory(true);
 
 
 }
